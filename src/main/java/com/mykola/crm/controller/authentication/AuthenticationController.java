@@ -5,6 +5,8 @@ import com.mykola.crm.dto.authentication.RegistrationRequest;
 import com.mykola.crm.dto.authentication.TokenResponse;
 import com.mykola.crm.model.User;
 import com.mykola.crm.service.authentication.AuthenticationService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpCookie;
@@ -32,6 +34,7 @@ public class AuthenticationController {
         TokenResponse jwtToken = authenticationService.authenticate(loginRequest);
         return ResponseEntity.ok(jwtToken);
     }
+
 
     @GetMapping("refresh-token")
     public ResponseEntity<TokenResponse> refreshToken(@AuthenticationPrincipal User currentUser) {
