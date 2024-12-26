@@ -17,8 +17,7 @@ import org.springframework.stereotype.Component;
 public class JwtUtil {
 
     @Value("${jwt.expiration.time}")
-    private Long expiration;
-
+    private int expiration;
     private Key secretKey;
 
     public JwtUtil(@Value("${jwt.secret.key}") String secretString) {
@@ -34,7 +33,7 @@ public class JwtUtil {
                 .addClaims(claims)  // Додаємо ваші власні клейми
                 .setIssuer("CRM")
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + (1000 * 60 * 60 * expiration)))  // було
+                .setExpiration(new Date(System.currentTimeMillis() + (1000L * 60 * 60 * expiration)))  // було
                 .signWith(secretKey).compact();
     }
 

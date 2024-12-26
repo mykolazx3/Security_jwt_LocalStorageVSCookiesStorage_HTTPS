@@ -27,9 +27,10 @@ public class SecurityConfig {
         return http
                 .cors(cors -> cors.configurationSource(request -> {
                     CorsConfiguration config = new CorsConfiguration();
-                    config.addAllowedOrigin("*");
-                    config.addAllowedMethod("*");
-                    config.addAllowedHeader("*");
+                    config.addAllowedOrigin("*"); // Вкажіть точний домен замість "*"
+                    config.addAllowedMethod("*"); // Дозволяє всі HTTP методи
+                    config.addAllowedHeader("*"); // Дозволяє всі заголовки
+                    config.setAllowCredentials(true); // Дозволяє передавати credentials (наприклад, кукі)
                     return config;
                 }))
                 .csrf(AbstractHttpConfigurer::disable)
@@ -41,6 +42,8 @@ public class SecurityConfig {
                                 "/auth/register", "/auth/login").permitAll()
                         .requestMatchers(
                                 "/index", "/index.html").permitAll()
+                        .requestMatchers(
+                                "/index2", "/index2.html").permitAll()
                         .requestMatchers("/static/**").permitAll() //не обовязково, доступ до /index канає без цього
                         .anyRequest().authenticated()
                 ))
