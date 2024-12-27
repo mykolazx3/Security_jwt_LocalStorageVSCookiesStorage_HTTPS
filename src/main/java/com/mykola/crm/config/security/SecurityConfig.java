@@ -44,9 +44,13 @@ public class SecurityConfig {
                                 "/index", "/index.html").permitAll()
                         .requestMatchers(
                                 "/index2", "/index2.html").permitAll()
-                        .requestMatchers("/static/**").permitAll() //не обовязково, доступ до /index канає без цього
+                        .requestMatchers(
+                                "/static/**", "/url.js").permitAll() //не обовязково, доступ до /index канає без цього
                         .anyRequest().authenticated()
                 ))
+                .requiresChannel(channel -> channel
+                        .anyRequest().requiresSecure() // Примушує всі запити бути через HTTPS
+                )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
