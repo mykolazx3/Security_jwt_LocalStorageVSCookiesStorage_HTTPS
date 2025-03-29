@@ -10,10 +10,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.mykola</groupId>
-    <artifactId>CRM</artifactId>
+    <artifactId>Security_jwt_LocalStorageVSCookiesStorage_HTTPS</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>CRM</name>
-    <description>CRM</description>
+    <name>Security_jwt_LocalStorageVSCookiesStorage_HTTPS</name>
+    <description>Security_jwt_LocalStorageVSCookiesStorage_HTTPS</description>
     <url/>
     <licenses>
         <license/>
